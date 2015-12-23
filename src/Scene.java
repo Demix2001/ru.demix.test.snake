@@ -25,7 +25,9 @@ public class Scene  {
         JPanel panel = new JPanel(new BorderLayout());
         frame.getContentPane().add(panel);
         panel1=panel;
+       //panel.setDoubleBuffered(true);
         frame.setVisible(true);          // выводим окно на экран.
+       ;
 
     }
 
@@ -34,6 +36,15 @@ public class Scene  {
         x= _x;
         y= _y;
         paint(panel1.getGraphics());
+
+    }
+
+    public static void drawLine(String str, int _x, int _y) {
+        text = str;
+        x= _x;
+        y= _y;
+        paintLine(panel1.getGraphics());
+
     }
 
 
@@ -42,9 +53,17 @@ public class Scene  {
 
 
     // обязательный метод paint, который выводит информацию на фрейм.
-        public static void paint(Graphics g) {
-        // super.paint(g);
-            g.drawString(text, x, y);
+        public static   void paint(Graphics g) {
+      // super.paint(g);
+            g.clearRect(x-10, y-10, 10, 10);
+            g.setColor(Color.BLUE);
+           g.drawString(text, x, y);
+    }
+
+        public static   void paintLine(Graphics g) {
+      // super.paint(g);
+            g.setColor(Color.RED);
+           g.drawString(text, x, y);
     }
 
 }

@@ -24,6 +24,7 @@ public class Main {
         Snake snake = new Snake(350, 300, Direction.RIGHT);
 
         snake.draw();
+        snake.move(Direction.RIGHT);
 
 
 

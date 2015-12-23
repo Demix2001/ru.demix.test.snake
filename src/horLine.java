@@ -10,6 +10,6 @@ public class horLine {
     }
 
     public void draw (String str, int x, int y) {
-        Scene.draw(str, x,  y);
+        Scene.drawLine(str, x,  y);
     }
 }
