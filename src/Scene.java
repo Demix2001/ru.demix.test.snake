@@ -12,7 +12,9 @@ import java.util.ArrayList;
 public class Scene  {
     private static JPanel panel1;
     private static String text;
-    private  static int x, y;
+    private  static int x, y, clearX, clearY;
+    private  static ArrayList<Point> snake;
+
 
     // Конструктор класса, который создает окно.
     public Scene(String name){
@@ -23,7 +25,7 @@ public class Scene  {
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);  //размещаем окно по центру экрана.
         JPanel panel = new JPanel(new BorderLayout());
-        frame.getContentPane().add(panel);
+        frame.add(panel);
         panel1=panel;
        //panel.setDoubleBuffered(true);
         frame.setVisible(true);          // выводим окно на экран.
@@ -31,10 +33,12 @@ public class Scene  {
 
     }
 
-    public static void draw(String str, int _x, int _y) {
+    public static void draw(String str, int _x, int _y, int x2, int y2) {
         text = str;
         x= _x;
         y= _y;
+        clearX = x2;
+        clearY = y2;
         paint(panel1.getGraphics());
 
     }
@@ -47,17 +51,30 @@ public class Scene  {
 
     }
 
+    public static void drawSnake(ArrayList<Point> list) {
+        snake = list;
+        paint(panel1.getGraphics());
+
+
+    }
+
 
 
 
 
 
     // обязательный метод paint, который выводит информацию на фрейм.
-        public static   void paint(Graphics g) {
-      // super.paint(g);
-            g.clearRect(x-10, y-10, 10, 10);
-            g.setColor(Color.BLUE);
-           g.drawString(text, x, y);
+        public static  void paint(Graphics g) {
+         //super.paint(g);
+            g.clearRect(10,10,770,550);
+           g.setColor(Color.BLUE);
+            for (int i = 0; i < snake.size(); i++ ) {
+                Point p = snake.get(i);
+                g.drawString(p.getString(), p.getX(), p.getY());
+            }
+
+
+
     }
 
         public static   void paintLine(Graphics g) {
